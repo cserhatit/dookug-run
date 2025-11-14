@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:DocumentSignRequest xmlns="http://common.dto.coffee.icellmobilsoft.hu/commonservice" xmlns:ns5="http://schemas.dookug.icellmobilsoft.hu/COMMON/1.0/common" xmlns:ns2="http://schemas.dookug.icellmobilsoft.hu/DOCUMENT/1.0/rest/documentsign" xmlns:ns4="http://schemas.dookug.icellmobilsoft.hu/DOCUMENT/1.0/rest/documentgenerate" xmlns:ns3="http://common.dto.coffee.icellmobilsoft.hu/common">
+  <context>
+    <requestId>56KIWZHH3WD6UY01</requestId>
+    <timestamp>2025-11-14T11:50:10.085Z</timestamp>
+  </context>
+  <ns2:digitalSignatureProfile>sampleProfile</ns2:digitalSignatureProfile>
+</ns2:DocumentSignRequest>
+
