@@ -1,7 +1,6 @@
 # DookuG runner
 
-This document provides a clean overview of how to run the DookuG environment locally, along with the most important links, configuration details, and diagnostic endpoints.
-
+This document provides a clean overview of how to run the [DookuG](https://github.com/i-Cell-Mobilsoft-Open-Source/DookuG-backend) environment locally, along with the most important links, configuration details, and diagnostic endpoints.
 ---
 
 ## 🚀 Start & Stop the Environment
