@@ -33,7 +33,7 @@ curl -X POST "http://localhost:8082/internal/dookug/document/sign/inline/multipa
   -H "Accept: application/octet-stream" \
   -F "DOCUMENT=@invoice.pdf;type=application/octet-stream" \
   -F "REQUEST=@request.xml;type=application/xml" \
-  -o ~/Downloads/invoice-signed.pdf
+  -o invoice-signed.pdf
 ```
 
 ---
