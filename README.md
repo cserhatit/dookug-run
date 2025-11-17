@@ -44,8 +44,8 @@ Request test signing certificates here:
 
 [https://srv.e-szigno.hu/szoftveres_teszt_igenyles&cms=on](https://srv.e-szigno.hu/szoftveres_teszt_igenyles&cms=on)
 
-[https://bteszt.e-szigno.hu/trootca2017.crt]Test e-Szigno Root CA 2017
-[https://bteszt.e-szigno.hu/testeca2017.crt]Test e-Szigno CA 2017
+[https://bteszt.e-szigno.hu/trootca2017.crt](Test e-Szigno Root CA 2017)
+[https://bteszt.e-szigno.hu/testeca2017.crt](Test e-Szigno CA 2017)
 
 ---
 
