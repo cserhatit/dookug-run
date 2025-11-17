@@ -8,7 +8,7 @@ services:
     container_name: jaeger
     image: jaegertracing/all-in-one:1.54.0
     volumes:
-        - '../config/jaeger/sampling_strategies.json:/etc/jaeger/sampling_strategies.json'
+        - './etc/jaeger/sampling_strategies.json:/etc/jaeger/sampling_strategies.json'
     ports:
         - '6831:6831/udp'
         - '16686:16686'
@@ -22,11 +22,11 @@ services:
     # image: otel/opentelemetry-collector-contrib:0.123.0
     command: [--config=/etc/otel-collector-config.yaml]
     volumes:
-      - ../config/opentelemetry/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+      - ./etc/opentelemetry/otel-collector-config.yaml:/etc/otel-collector-config.yaml
       #- ../config/opentelemetry/otel-collector-probabilistic-sampling-config.yaml:/etc/otel-collector-config.yaml
       #- ../config/opentelemetry/otel-collector-tail-sampling-config.yaml:/etc/otel-collector-config.yaml
       # example sampling strategies to otelcol 
-      - ../config/jaeger/sampling_strategies.json:/etc/otelcol/sampling_strategies.json
+      - ./etc/jaeger/sampling_strategies.json:/etc/otelcol/sampling_strategies.json
     ports:
       - 1888:1888 # pprof extension
       - 8888:8888 # Prometheus metrics exposed by the collector
@@ -64,11 +64,12 @@ services:
     container_name: dookug-document-service
     image: icellmobilsoft/dookug-document-service-postgres:2.0.0
     volumes:
-      - './fonts/:/home/icellmobilsoft/fonts'
-      - './fop-config/:/home/icellmobilsoft/fop-config'
-      - './keys/pdf/keystore.p12:/home/icellmobilsoft/keys/keystore.p12'
-      - './pdfsign/sample/signature-green.png:/home/icellmobilsoft/pdfsign/sample/signature.png'
-      - './handlebars/helper/js:/home/icellmobilsoft/handlebars/helper/js'
+      - './etc/fonts/:/home/icellmobilsoft/fonts'
+      - './etc/fop-config/:/home/icellmobilsoft/fop-config'
+      - './etc/keys/pdf/keystore.p12:/home/icellmobilsoft/keys/keystore.p12'
+      - './etc/pdfsign/sample/signature-green.png:/home/icellmobilsoft/pdfsign/sample/signature.png'
+      - './etc/handlebars/helper/js:/home/icellmobilsoft/handlebars/helper/js'
+      - './etc/keys/test-eszigno.pfx:/home/icellmobilsoft/keys/keystore.pfx'
     ports:
       - '8082:8080'
       - '9992:9990'
@@ -78,6 +79,8 @@ services:
       CONSOLE_LOGGING_JSON_ENABLED: false
       CONSOLE_LOGGING_ENABLED: true
       LOGSTASH_ENABLED: false
+      LOGGING_ROOT_LOGGER_LOGLEVEL: INFO
+      LOGGING_HU_ICELLMOBILSOFT_LOGGER_LOGLEVEL: DEBUG
       DEBUG: true
       HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       POSTGRESQL_DS_CONNECTION_URL: jdbc:postgresql://module-dookug-postgredb:5432/dookug_db?currentSchema=dookug
@@ -93,6 +96,19 @@ services:
       DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_SAMPLEPROFILE_DSS_TSPSOURCES: http://timestamp.digicert.com
       DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_SAMPLEPROFILE_DSS_IMAGEFILE: /home/icellmobilsoft/pdfsign/sample/signature.png
       DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_SAMPLEPROFILE_DSS_SHOWONPAGE: 0
+
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_KEYSTOREPASS: AbcE1234
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_KEYSTORETYPE: PKCS12
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_KEYALIAS: '1'
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_KEYSTORE: /home/icellmobilsoft/keys/keystore.pfx
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_DSS_ENCRYPTIONALGORITHM: ECDSA
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_PDFBOX_SIGNATUREALGORITHM: SHA256withECDSA
+      #DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_DSS_DIGESTALGORITHM: SHA256
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_USEEUDSSSIG: true
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_DSS_USELTA: true
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_DSS_TSPSOURCES: http://timestamp.digicert.com
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_DSS_IMAGEFILE: /home/icellmobilsoft/pdfsign/sample/signature.png
+      DOOKUG_SERVICE_ENGINE_PDF_DIGITALSIGN_ESZIGNO_DSS_SHOWONPAGE: 0
       
 #      OPENTRACING_JAEGER_AGENT_HOST: jaeger
 #      JAEGER_SERVICE_NAME: dookug-document-service
