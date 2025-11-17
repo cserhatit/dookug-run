@@ -48,7 +48,7 @@ Request test signing certificates here:
 
 [Test e-Szigno CA 2017](https://bteszt.e-szigno.hu/testeca2017.crt)
 
-Copy the downloaded vertificate.pfx to __etc/keys/test-eszigno.pfx__
+> Copy the downloaded certificate.pfx to __etc/keys/test-eszigno.pfx__
 
 ---
 
